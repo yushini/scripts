@@ -1,0 +1,44 @@
+prontera,146,173,4    script    Anunciador        85,{
+
+set @npc$,"[ ^0000FF Anunciador^000000 ]";
+
+if (getgroupid () == 0) goto no;
+
+mes @npc$;
+mes "Bem vindo "+strcharinfo(0)+"!";
+mes "Vejo que você deseja escrever um anuncio!";
+switch(select("- Sim:- Não")){
+next;
+
+case 1:
+mes @npc$;
+mes "Muito bem, o que deseja escrever?";
+input @msg$;
+next;
+
+mes @npc$;
+mes "Você digitou...";
+mes "^0000FF"+@msg$+"^000000";
+next;
+
+mes @npc$;
+mes "Enviando...";
+announce ""+strcharinfo(0)+" : "+@msg$+"",bc_all;
+next;
+mes @npc$;
+mes "Sua mensagem foi enviada com sucesso!";
+close;
+
+
+case 2:
+mes @npc$;
+mes "Então volte quando tiver algo em mente!";
+close;
+}
+
+no:
+mes @npc$;
+mes "Me desculpe, mas você não é vip!";
+mes "Acesse o site e descubra como se tornar um!";
+close;
+}
