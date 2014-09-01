@@ -1,0 +1,14 @@
+// Change all server job to baby, when player create a new char.
+// Created by Yushini!
+
+-	script	baby	-1,{
+
+OnPCLoginEvent:
+if (Class == 0) goto baby;
+end;
+
+baby:
+jobchange 4023;
+dispbottom "Welcome to YOURRO!";
+end;
+}
