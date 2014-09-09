@@ -1,0 +1,98 @@
+//---------------------------------------------------------
+// Arquivo para Configuração da Experiência
+//---------------------------------------------------------
+// Nota 1: a exp é configurada para servidor 50x.
+// Nota 2: Caso queira mudar procure set $@bxp, rand e @jxp, rand.
+// Nota 3: A adição de exp funciona igual a tabela na pasta conf. 100 = 1x
+//         Veja os arquivos conf/battle/exp.txt para ter uma idéia.
+//---------------------------------------------------------
+// Criado por Yushini.
+// Primeira versão!
+//---------------------------------------------------------
+
+prontera,155,150,4	script	Exp	822,{
+
+set @npc$,"[^0000FF Organizador de Experiência^000000 ]";
+
+if (getgroupid () < 80) goto player;
+mes @npc$;
+mes "Olá "+strcharinfo(0)+".";
+mes "O que deseja hoje?";
+switch(select("Double:Triple:Quadra:Desligar Evento:Sair")){
+
+case 1:
+next;
+if ($@exp == 1){
+mes @npc$;
+mes "Como posso te dizer, o evento já está ligado!";
+close;
+}
+set $@exp,1;
+set $@bxp,rand(10000,10000); // Configuração BASE XP 10000 = 100x
+set $@jxp,rand(10000,10000); // Configuração JOB XP 10000 = 100x
+setbattleflag("base_exp_rate",$@bxp);
+setbattleflag("job_exp_rate",$@jxp);
+announce "Evento de Exp Ligado, as rates estão 2x! Não funciona com chance de drop.",bc_all;
+atcommand "@reloadmobdb";
+close;
+
+case 2:
+next;
+if ($@exp == 1){
+mes @npc$;
+mes "Como posso te dizer, o evento já está ligado!";
+close;
+}
+set $@exp,1;
+set $@bxp,rand(15000,15000); // Configuração BASE XP 15000 = 150x
+set $@jxp,rand(15000,15000); // Configuração JOB XP 15000 = 150x
+setbattleflag("base_exp_rate",$@bxp);
+setbattleflag("job_exp_rate",$@jxp);
+announce "Evento de Exp Ligado, as rates estão 3x! Não funciona com chance de drop.",bc_all;
+atcommand "@reloadmobdb";
+close;
+
+case 3:
+next;
+if ($@exp == 1){
+mes @npc$;
+mes "Como posso te dizer, o evento já está ligado!";
+close;
+}
+
+set $@exp,1;
+set $@bxp,rand(20000,20000); // Configuração BASE XP 20000 = 200x
+set $@jxp,rand(20000,20000); // Configuração JOB XP 20000 = 200x
+setbattleflag("base_exp_rate",$@bxp);
+setbattleflag("job_exp_rate",$@jxp);
+announce "Evento de Exp Ligado, as rates estão 4x! Não funciona com chance de drop.",bc_all;
+atcommand "@reloadmobdb";
+close;
+
+case 4:
+next;
+if ($@exp == 1){
+set $@exp,0; // Desligar o Evento XP anterior.
+set $@bxp,rand(5000,5000); // Configuração BASE XP 5000 = 50x
+set $@jxp,rand(5000,5000); // Configuração JOB XP 5000 = 50x
+setbattleflag("base_exp_rate",$@bxp);
+setbattleflag("job_exp_rate",$@jxp);
+announce "O Evento de EXP, acabou. Exp voltou ao normal!",bc_all;
+atcommand "@reloadmobdb";
+close;
+}
+mes @npc$;
+mes "O evento já está desligado!";
+close;
+
+case 5:
+mes @npc$;
+mes "Muito bem, volte quando desejar!";
+close;
+}
+player:
+mes @npc$;
+mes "Apenas Adm's podem configurar o evento!";
+mes "Entre em contato com o ADM..";
+close;
+}
