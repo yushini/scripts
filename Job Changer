@@ -1,0 +1,570 @@
+//================ Comentários =========================================
+// Mestre das classes, sem as classes expandidas, e com opção de mudar a classes
+// primária ao renascer!
+//===================== Créditos =======================================
+// 1.0 NPC Criado 								[Karm+]
+//======================================================================
+
+
+prontera,138,203,4	script	Mestre das Classes	1_M_LIBRARYMASTER,{
+	
+	set @npc$,"Job Changer";
+	
+	if (Class < 20 && BaseLevel == 99) goto reborn;
+	if (Class == 4001) goto ini;
+	if (Class == 1 ) goto knt;
+	if (Class == 4002) goto kntt;
+	if (Class == 2) goto mag;
+	if (Class == 4003) goto magt;
+	if (Class == 3) goto arc;
+	if (Class == 4004) goto arct;
+	if (Class == 4) goto acl;
+	if (Class == 4005) goto aclt;
+	if (Class == 5) goto mer;
+	if (Class == 4006) goto mert;
+	if (Class == 6) goto thi;
+	if (Class == 4007) goto thit;
+	mes @npc$;
+	mes "Welcome Adventurer!";
+	mes "I can chage your Job easy!";
+	mes "What you say?";
+	next;
+	switch(select("Swordsman","Magican","Archer","Acolyte","Merchant","Thief","Cancel")){
+	
+	case 1:
+	mes "Change to Swordman...";
+	mes "Just a Minute!";
+	next;
+		if (JobLevel == 10 && SkillPoint == 0 ){
+		jobchange 1;
+		mes @npc$;
+		mes "Tenha um bom dia!";
+		close;
+		}
+		mes @npc$;
+		mes "You don't have Level or don't spend your abilits points!";
+		mes "Return when you go ready!";
+		close;
+	
+	case 2:
+	mes "Change to Magican";
+	next;
+	if (JobLevel == 10 && SkillPoint == 0 ){
+		jobchange 2;
+		mes @npc$;
+		mes "Have a nice day!";
+		close;
+		}
+		mes @npc$;
+		mes "You don't have Level or don't spend your abilits points!";
+		mes "Return when you go ready!";
+		close;
+		
+	case 3:
+	mes "Change to Archer";
+	next;
+	if (JobLevel == 10 && SkillPoint == 0 ){
+		jobchange 3;
+		mes @npc$;
+		mes "Have a nice Day!";
+		close;
+		}
+		mes @npc$;
+		mes "You don't have Level or don't spend your abilits points!";
+		mes "Return when you go ready!";
+		close;
+	
+	case 4:
+	mes "Change to Acolyte";
+	next;
+	if (JobLevel == 10 && SkillPoint == 0 ){
+		jobchange 4;
+		mes @npc$;
+		mes "Have a nice Day!";
+		close;
+		}
+		mes @npc$;
+		mes "You don't have Level or don't spend your abilits points!";
+		mes "Return when you go ready!";
+		close;
+	
+	case 5:
+	mes "Change to Merchant";
+	next;
+	if (JobLevel == 10 && SkillPoint == 0 ){
+		jobchange 5;
+		mes @npc$;
+		mes "Have a nice Day!";
+		close;
+		}
+		mes @npc$;
+		mes "You don't have Level or don't spend your abilits points!";
+		mes "Return when you go ready!";
+		close;
+		
+	case 6:
+	mes "Change to Thief";
+	next;
+	if (JobLevel == 10 && SkillPoint == 0 ){
+		jobchange 6;
+		mes @npc$;
+		mes "Have a nice Day!";
+		close;
+		}
+		mes @npc$;
+		mes "You don't have Level or don't spend your abilits points!";
+		mes "Return when you go ready!";
+		close;
+		
+	case 7:
+	mes @npc$;
+	mes "Return when you are Ready!";
+	close;
+	}	
+	
+	
+	knt:
+	mes @npc$;
+	mes "You are fast!";
+	mes "Choose your Job Now!";
+	next;
+	switch(select("Knight","Crusader","Cancel")){
+	
+	case 1:
+	mes "Change to Knight";
+	next;
+	if (JobLevel >= 40 && SkillPoint == 0 ){
+		jobchange 7;
+		mes @npc$;
+		mes "Have a nice Day!";
+		close;
+		}
+		mes @npc$;
+		mes "You don't have Level or don't spend your abilits points!";
+		mes "Return when you go ready!";
+		close;
+		
+	case 2:
+	mes "Cange to Crusader!";
+	next;
+	if (JobLevel >= 40 && SkillPoint == 0 ){
+		jobchange 14;
+		mes @npc$;
+		mes "Have a nice Day!";
+		close;
+		}
+		mes @npc$;
+		mes "You don't have Level or don't spend your abilits points!";
+		mes "Return when you go ready!";
+		close;
+	
+	case 3:
+	mes @npc$;
+	mes "Return when you are ready!";
+	close;
+	}
+	
+	reborn:
+	mes @npc$;
+	mes "Do you like to Rebirth?";
+	next;
+	switch(select("Yes","No")){
+	
+	case 1:
+	jobchange 4001;
+	resetlvl(1);
+	close;
+	
+	case 2:
+	mes @npc$;
+	mes "Return when you wish!";
+	
+	}
+	
+	ini:
+	mes @npc$;
+	mes "You return fast!";
+	next;
+	switch(select("Swordman High","Magican High","Cancel")){
+	
+	case 1:
+	if (SkillPoint == 0 && JobLevel == 10){
+	jobchange 4002;
+	close;
+	}
+	
+	case 2:
+	if (SkillPoint == 0 && JobLevel == 10){
+	jobchange 4003;
+	close;
+	}
+	
+	mes @npc$;
+	mes "You don't have Level or don't spend your abilits points!";
+	mes "Return when you go ready!";
+	close;
+	}
+	
+	kntt:
+	mes @npc$;
+	mes "What you want today?";
+	next;
+	switch(select("Lord Knight","Paladin","Cancel")){
+	
+	case 1:
+	if (JobLevel >= 40){
+	jobchange 4008;
+	close;
+	}
+	
+	case 2:
+	if (JobLevel >= 40){
+	jobchange 4008;
+	close;
+	}
+	
+	case 3:
+	mes @npc$;
+	mes "Return when you are ready!";
+	close;
+	}
+	
+	mag:
+	mes @npc$;
+	mes "You are fast!";
+	mes "Choose your Job Now!";
+	next;
+	switch(select("Wizard","Sage","Cancel")){
+	
+	case 1:
+	mes "Change to Wizard";
+	next;
+	if (JobLevel >= 40 && SkillPoint == 0 ){
+		jobchange 9;
+		mes @npc$;
+		mes "Have a nice Day!";
+		close;
+		}
+		mes @npc$;
+		mes "You don't have Level or don't spend your abilits points!";
+		mes "Return when you go ready!";
+		close;
+		
+	case 2:
+	mes "Cange to Sage!";
+	next;
+	if (JobLevel >= 40 && SkillPoint == 0 ){
+		jobchange 16;
+		mes @npc$;
+		mes "Have a nice Day!";
+		close;
+		}
+		mes @npc$;
+		mes "You don't have Level or don't spend your abilits points!";
+		mes "Return when you go ready!";
+		close;
+	
+	case 3:
+	mes @npc$;
+	mes "Return when you are ready!";
+	close;
+	}
+	
+	magt:
+	mes @npc$;
+	mes "You are fast!";
+	mes "Choose your Job Now!";
+	next;
+	switch(select("High Wizard","Professor","Cancel")){
+	
+	case 1:
+	mes "Change to High Wizard";
+	next;
+	if (JobLevel >= 40 && SkillPoint == 0 ){
+		jobchange 4010;
+		mes @npc$;
+		mes "Have a nice Day!";
+		close;
+		}
+		mes @npc$;
+		mes "You don't have Level or don't spend your abilits points!";
+		mes "Return when you go ready!";
+		close;
+		
+	case 2:
+	mes "Change to Professor!";
+	next;
+	if (JobLevel >= 40 && SkillPoint == 0 ){
+		jobchange 4017;
+		mes @npc$;
+		mes "Have a nice Day!";
+		close;
+		}
+		mes @npc$;
+		mes "You don't have Level or don't spend your abilits points!";
+		mes "Return when you go ready!";
+		close;
+	
+	case 3:
+	mes @npc$;
+	mes "Return when you are ready!";
+	close;
+	}
+	
+	arc:
+	mes @npc$;
+	mes "You are fast!";
+	mes "Choose your Job Now!";
+	next;
+	switch(select("Hunter","Bard/Dancer","Cancel")){
+	
+	case 1:
+	mes "Change to Hunter";
+	next;
+	if (JobLevel >= 40 && SkillPoint == 0 ){
+		jobchange 11;
+		mes @npc$;
+		mes "Have a nice Day!";
+		close;
+		}
+		mes @npc$;
+		mes "You don't have Level or don't spend your abilits points!";
+		mes "Return when you go ready!";
+		close;
+		
+	case 2:
+	
+	mes "Change to Bard/Dancer!";
+	next;
+	if (JobLevel >= 40 && SkillPoint == 0){
+		jobchange 19;
+		mes @npc$;
+		mes "Have a nice Day!";
+		close;
+		}
+		mes @npc$;
+		mes "You don't have Level or don't spend your abilits points!";
+		mes "Return when you go ready!";
+		close;
+	
+	case 3:
+	mes @npc$;
+	mes "Return when you are ready!";
+	close;
+	}
+	
+		arct:
+	mes @npc$;
+	mes "You are fast!";
+	mes "Choose your Job Now!";
+	next;
+	switch(select("Sniper","Clown/Gypsy","Cancel")){
+	
+	case 1:
+	mes "Change to Sniper..";
+	next;
+	if (JobLevel >= 40 && SkillPoint == 0 ){
+		jobchange 4012;
+		mes @npc$;
+		mes "Have a nice Day!";
+		close;
+		}
+		mes @npc$;
+		mes "You don't have Level or don't spend your abilits points!";
+		mes "Return when you go ready!";
+		close;
+		
+	case 2:
+	
+	mes "Change to Clown/Gypsy!";
+	next;
+	if (JobLevel >= 40 && SkillPoint == 0){
+		jobchange 19;
+		mes @npc$;
+		mes "Have a nice Day!";
+		close;
+		}
+		mes @npc$;
+		mes "You don't have Level or don't spend your abilits points!";
+		mes "Return when you go ready!";
+		close;
+	
+	case 3:
+	mes @npc$;
+	mes "Return when you are ready!";
+	close;
+	}
+	
+	
+		mer:
+	mes @npc$;
+	mes "You are fast!";
+	mes "Choose your Job Now!";
+	next;
+	switch(select("Blacksmith","Alchemist","Cancel")){
+	
+	case 1:
+	mes "Change to Blacksmith..";
+	next;
+	if (JobLevel >= 40 && SkillPoint == 0 ){
+		jobchange 10;
+		mes @npc$;
+		mes "Have a nice Day!";
+		close;
+		}
+		mes @npc$;
+		mes "You don't have Level or don't spend your abilits points!";
+		mes "Return when you go ready!";
+		close;
+		
+	case 2:
+	
+	mes "Change to Alchemist!";
+	next;
+	if (JobLevel >= 40 && SkillPoint == 0){
+		jobchange 18;
+		mes @npc$;
+		mes "Have a nice Day!";
+		close;
+		}
+		mes @npc$;
+		mes "You don't have Level or don't spend your abilits points!";
+		mes "Return when you go ready!";
+		close;
+	
+	case 3:
+	mes @npc$;
+	mes "Return when you are ready!";
+	close;
+	}
+	
+		mert:
+	mes @npc$;
+	mes "You are fast!";
+	mes "Choose your Job Now!";
+	next;
+	switch(select("Whitesmith","Creator","Cancel")){
+	
+	case 1:
+	mes "Change to Whitesmith..";
+	next;
+	if (JobLevel >= 40 && SkillPoint == 0 ){
+		jobchange 4011;
+		mes @npc$;
+		mes "Have a nice Day!";
+		close;
+		}
+		mes @npc$;
+		mes "You don't have Level or don't spend your abilits points!";
+		mes "Return when you go ready!";
+		close;
+		
+	case 2:
+	
+	mes "Change to Creator!";
+	next;
+	if (JobLevel >= 40 && SkillPoint == 0){
+		jobchange 4019;
+		mes @npc$;
+		mes "Have a nice Day!";
+		close;
+		}
+		mes @npc$;
+		mes "You don't have Level or don't spend your abilits points!";
+		mes "Return when you go ready!";
+		close;
+	
+	case 3:
+	mes @npc$;
+	mes "Return when you are ready!";
+	close;
+	}
+	
+		thi:
+	mes @npc$;
+	mes "You are fast!";
+	mes "Choose your Job Now!";
+	next;
+	switch(select("Assassin","Rogue","Cancel")){
+	
+	case 1:
+	mes "Change to Assassin..";
+	next;
+	if (JobLevel >= 40 && SkillPoint == 0 ){
+		jobchange 12;
+		mes @npc$;
+		mes "Have a nice Day!";
+		close;
+		}
+		mes @npc$;
+		mes "You don't have Level or don't spend your abilits points!";
+		mes "Return when you go ready!";
+		close;
+		
+	case 2:
+	
+	mes "Change to Rogue!";
+	next;
+	if (JobLevel >= 40 && SkillPoint == 0){
+		jobchange 17;
+		mes @npc$;
+		mes "Have a nice Day!";
+		close;
+		}
+		mes @npc$;
+		mes "You don't have Level or don't spend your abilits points!";
+		mes "Return when you go ready!";
+		close;
+	
+	case 3:
+	mes @npc$;
+	mes "Return when you are ready!";
+	close;
+	}
+
+		thit:
+	mes @npc$;
+	mes "You are fast!";
+	mes "Choose your Job Now!";
+	next;
+	switch(select("Assassin Cross","Stalker","Cancel")){
+	
+	case 1:
+	mes "Change to Assassin Cross..";
+	next;
+	if (JobLevel >= 40 && SkillPoint == 0 ){
+		jobchange 4013;
+		mes @npc$;
+		mes "Have a nice Day!";
+		close;
+		}
+		mes @npc$;
+		mes "You don't have Level or don't spend your abilits points!";
+		mes "Return when you go ready!";
+		close;
+		
+	case 2:
+	
+	mes "Change to Stalker!";
+	next;
+	if (JobLevel >= 40 && SkillPoint == 0){
+		jobchange 4018;
+		mes @npc$;
+		mes "Have a nice Day!";
+		close;
+		}
+		mes @npc$;
+		mes "You don't have Level or don't spend your abilits points!";
+		mes "Return when you go ready!";
+		close;
+	
+	case 3:
+	mes @npc$;
+	mes "Return when you are ready!";
+	close;
+	}
+}	
+		
+	
+	
+	
