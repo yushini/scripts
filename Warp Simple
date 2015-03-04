@@ -1,0 +1,156 @@
+//===== Comentários ============================================
+// Teleportadora Old Times, com opção de ultimo teleporte!
+//========== Créditos ==========================================
+//= 1.0 - NPC Criado.				       [Karm+]
+//==============================================================
+
+-	script	Teleportadora	-1,{
+
+	mes "[Teleportador]";
+	mes "Para onde gostaria de ir hoje?";
+	next;
+		function Go; function Disp; function Pick;
+		// --------------------------------------------------
+		// Main Menu:
+		// --------------------------------------------------
+		menu "Último Warp ^777777["+lastwarp$+"]^000000",-," ~ Cidades.",Towns," ~ Cavernas.",Dungeons;
+		if (lastwarp$ == "") dispbottom "Você ainda não se teletransportou para nenhum lugar.";
+		else warp lastwarp$,lastwarpx,lastwarpy;
+		close;
+	
+		// ------------------- Functions -------------------
+		// * Go("<map>",<x>,<y>);
+		// ~ Warps directly to a map.
+		// * Disp("<Menu Option>",<first option>,<last option>);
+		// * Pick("<map_prefix>"{,<index offset>});
+		// ~ Dynamic menu and map selection.
+		// * Disp("","<Option 1>:<Option 2>:<etc.>");
+		// * Pick("","<map1>","<map2>","<etc.>");
+		// ~ Manual menu and map selection.
+		//
+		// Other notes:
+		//   ~ Array @c[] holds all (x,y) coordinates.
+		//   ~ Use @c[2] EXCEPT when maps begin dynamically
+		//   at 0: use @c[0] and Pick() offset 1.
+		// --------------------------------------------------
+		function Go {
+			warp getarg(0),getarg(1,0),getarg(2,0);
+			getmapxy(lastwarp$,lastwarpx,lastwarpy,0);
+			close;
+		}
+		function Disp {
+			set @menu$,"";
+			if(getarg(0)=="") {
+				set @menu$,getarg(1);
+				return;
+			}
+			for(set .@i,getarg(1); .@i<=getarg(2); set .@i,.@i+1)
+			set @menu$, @menu$+getarg(0)+" "+.@i+":";
+			return;
+		}
+		function Pick {
+			if(getarg(0)=="") {
+				set .@i, select(@menu$);
+				warp getarg(.@i),@c[.@i*2],@c[.@i*2+1];
+			} else {
+				set .@i, select(@menu$)-getarg(1,0);
+				warp getarg(0)+((.@i<10)?"0":"")+.@i,@c[.@i*2],@c[.@i*2+1];
+			}
+			getmapxy(lastwarp$,lastwarpx,lastwarpy,0);
+			close;
+		}
+	 
+		// --------------------------------------------------
+		Towns: {
+		// --------------------------------------------------
+		menu "Prontera",T1,"Alberta",T2,"Aldebaran",T3,"Amatsu",T4,"Comodo",T5,"Geffen",T6,"Gonryun",T7,"Izlude",T8,"Louyang",T9,"Lutie",T10,"Morroc",T11,"Niflheim",T12,"Payon",T13,"Umbala",T14,"Yuno",T15;
+			T1: Go("prontera",155,183);
+			T2: Go("alberta",28,234);
+			T3: Go("aldebaran",140,131);
+			T4: Go("amatsu",198,84);
+			T5: Go("comodo",209,143);
+			T6: Go("geffen",120,68);
+			T7: Go("gonryun",160,121);
+			T8: Go("izlude",128,114);
+			T9: Go("louyang",217,100);
+			T10: Go("xmas",147,134);
+			T11: Go("morocc",156,93);
+			T12: Go("niflheim",202,174);
+			T13: Go("payon",179,100);
+			T14: Go("umbala",127,128);
+			T15: Go("yuno",157,51);
+		}
+		// --------------------------------------------------
+		// --------------------------------------------------
+		Dungeons: {
+		// --------------------------------------------------
+			menu "Calabou de Amatsu.",D1,"Formigueiro Infernal.",D2,"Calabouços de Comodo.",D3,"Ilhas Byalan.",D4,"Torre do Relógio.",D5,"Minas de Carvão.",D6,"Esgotos de Prontera.",D7,"Gefenia.",D8,"Calabouço de Geffen.",D9,"Glast Heim.",D10,"Calabouço de Gonryun.",D11,"Labirinto Escondido.",D12,"Calabouço de Louyang.",D13,"Caverna de Magma.",D14,"Caverna dos Orcs.",D15,"Caverna de Payon.",D16,"Piramides.",D17,"Esfinge.",D18,"Navio Fantasma.",D19,"Fábrica de Brinquedos.",D20,"Caverna da Tartaruga.",D21,"Calabouço de Umbala.",D22;
+			D1: setarray @c[2],228,11,34,41,119,14;
+				Disp("Calabouço de Amatsu.",1,3); Pick("ama_dun");
+			D2: setarray @c[2],35,262,168,170;
+				Disp("Formigueiro Infernal.",1,2); Pick("anthell");
+			D3: setarray @c[2],266,67,255,244,23,260;
+				Disp("Calabouços de Comodo.",1,3); Pick("","beach_dun","beach_dun2","beach_dun3");
+			D4: setarray @c[0],168,168,253,252,236,204,32,63,26,27;
+				Disp("Ilha Byalan.",1,5); Pick("iz_dun",1);
+			D5: setarray @c[2],199,159,148,283,65,147,56,155,297,25,127,169,277,178,268,74;
+				Disp("","Torre do Relógio 1:Torre do Relógio 2:Torre do Relógio 3:Torre do Relógio 4:Calabouço de Aldebaran 1:Calabouço de Aldebaran 2:Calabouço de Aldebaran 3:Calabouço de Aldebaran 4");
+				Pick("","c_tower1","c_tower2","c_tower3","c_tower4","alde_dun01","alde_dun02","alde_dun03","alde_dun04");
+			D6: setarray @c[2],52,17,381,343,302,262;
+				Disp("Minas de Carvão.",1,3); Pick("mjo_dun");
+			D7: setarray @c[2],131,247,19,19,180,169,100,92;
+				Disp("Esgotos de Prontera.",1,4); Pick("","prt_sewb1","prt_sewb2","prt_sewb3","prt_sewb4");
+			D8: setarray @c[2],40,103,203,34,266,168,130,272;
+				Disp("Gefenia.",1,4); Pick("gefenia",0);
+			D9: setarray @c[0],104,99,115,236,106,132,203,200;
+				Disp("Calabouço de Geffen.",1,4); Pick("gef_dun",1);
+			D10: setarray @c[2],375,304,199,29,104,25,150,15,157,287,147,15,258,255,108,291,171,283,68,277,156,7,12,7,133,271,224,274,14,70,150,14;
+				Disp("","Entrada:Castelo 1:Castelo 2:Cavalaria 1:Cavalaria 2:Igreja:Monastério 1:Monastério 2:Monastério 3:Monastério 4:Abadia:Escadarias:Caverna Subterranea 1:Caverna Subterranea 2:Prisão Subterranea 1:Prisão Subterranea 2");
+				Pick("","glast_01","gl_cas01","gl_cas02","gl_knt01","gl_knt02","gl_chyard","gl_sew01","gl_sew02","gl_sew03","gl_sew04","gl_church","gl_step","gl_dun01","gl_dun02","gl_prison","gl_prison1");
+			D11: setarray @c[2],153,53,28,113,68,16;
+				Disp("Calabouço de Gonryun.",1,3); Pick("gon_dun");
+			D12: setarray @c[2],176,7,93,20,23,8;
+				Disp("Labirinto Escondido.",1,3); Pick("prt_maze");
+			D13: setarray @c[2],218,196,282,20,165,38;
+				Disp("","The Royal Tomb:Inside the Royal Tomb:Suei Long Gon"); Pick("lou_dun");
+			D14: setarray @c[2],126,68,47,30;
+				Disp("Calabouço de Magma.",1,2); Pick("mag_dun");
+			D15: setarray @c[2],32,170,21,185;
+				Disp("Caverna dos Orcs.",1,2); Pick("orcsdun");
+			D16: setarray @c[0],21,183,19,33,19,63,155,159,201,204;
+				Disp("Caverna de Payon.",1,5); Pick("pay_dun",1);
+			D17: setarray @c[2],192,9,10,192,100,92,181,11,94,96,192,8;
+				Disp("","Piramides 1:Piramides 2:Piramides 3:Piramides 4:Base 1:Base 2"); Pick("moc_pryd");
+			D18: setarray @c[2],288,9,149,81,210,54,10,222,100,99;
+				Disp("Esfinge.",1,5); Pick("","in_sphinx1","in_sphinx2","in_sphinx3","in_sphinx4","in_sphinx5");
+			D19: setarray @c[2],69,24,102,27;
+				Disp("Navio Fantasma.",1,2); Pick("treasure");
+			D20: setarray @c[2],205,15,129,133;
+				Disp("Fábrica de Brinquedos.",1,2); Pick("xmas_dun");
+			D21: setarray @c[2],154,49,148,261,132,189,100,192;
+				Disp("","Entrada:Caverna da Tartaruga 1:Caverna da Tartaruga 2:Caverna da Tartaruga 3"); Pick("tur_dun");
+			D22: setarray @c[2],42,31,48,30,204,78;
+				Disp("","Loja do carpinteiro na arvore:Passagem para o outro mundo.:Fonte de Hvergermil'.");
+				Pick("","um_dun01","um_dun02","yggdrasil01");
+		}
+
+}
+
+
+// Duplicações
+//============================================================
+alberta,25,240,6	duplicate(Teleportadora)	Teleportadora#alb	4_F_MAID
+aldebaran,135,118,6	duplicate(Teleportadora)	Teleportadora#alde	4_F_MAID
+amatsu,200,79,4	duplicate(Teleportadora)	Teleportadora#ama	4_F_MAID
+comodo,184,158,6	duplicate(Teleportadora)	Teleportadora#com	4_F_MAID
+geffen,115,72,6	duplicate(Teleportadora)	Teleportadora#gef	4_F_MAID
+gonryun,156,122,6	duplicate(Teleportadora)	Teleportadora#gon	4_F_MAID
+izlude,125,118,5	duplicate(Teleportadora)	Teleportadora#izl	4_F_MAID
+louyang,226,103,4	duplicate(Teleportadora)	Teleportadora#lou	4_F_MAID
+morocc,153,97,6	duplicate(Teleportadora)	Teleportadora#mor	4_F_MAID
+niflheim,212,182,5	duplicate(Teleportadora)	Teleportadora#nif	4_F_MAID
+payon,179,106,4	duplicate(Teleportadora)	Teleportadora#pay	4_F_MAID
+prontera,140,203,4	duplicate(Teleportadora)	Teleportadora#prt	4_F_MAID
+umbala,105,148,3	duplicate(Teleportadora)	Teleportadora#umb	4_F_MAID
+xmas,143,136,4	duplicate(Teleportadora)	Teleportadora#xmas	4_F_MAID
+yuno,164,45,4	duplicate(Teleportadora)	Teleportadora#yuno	4_F_MAID
