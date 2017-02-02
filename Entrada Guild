@@ -28,6 +28,6 @@ prontera,139,150,1	script	Guilda	722,{
 	close;
 
 OnRecvCastlePt01:
-	FlagEmblem GetCastleData("prtg_cas01",1);
+	FlagEmblem GetCastleData("prtg_cas01",1); // Setar castelo igual no começo
 	end;
 }
