@@ -1,0 +1,33 @@
+prontera,139,150,1	script	Guilda	722,{
+	
+	set @npc$,"[^0000FF Nome da GUILD ^000000]";	// Nome do npc
+	set .@GID, GetCastleData("prtg_cas01",1);		// Setar o castelo
+
+	if (.@GID == 0) {
+		mes @npc$;
+		mes "Bom dia...!";
+		close;
+	}
+	if (getcharid(2) == .@GID) {
+		mes @npc$;
+		mes "Olá...";
+		mes "Deseja ir para??";
+		next;
+		if(select("Entrar:Sair.") == 1) {
+		close2;
+		if (getcharid(2) == GetCastleData("prtg_cas01",1)) {
+		warp "prtg_cas01",96,173;
+		end;
+	}
+	end;
+		}
+	close;
+	}
+	mes @npc$;
+	mes "Assim msmo!";
+	close;
+
+OnRecvCastlePt01:
+	FlagEmblem GetCastleData("prtg_cas01",1);
+	end;
+}
